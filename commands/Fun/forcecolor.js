@@ -110,7 +110,7 @@ module.exports = {
 
                                                 const newProfile = new Profile({
                                                     UserID: targetMember.id,
-                                                    Username: targetMember.username,
+                                                    Username: message.mentions.users.first().username,
                                                     ServerID: message.guild.id,
                                                     ActiveColor: newRole.id
                                                 })
@@ -130,7 +130,7 @@ module.exports = {
 
                                                     const newProfile = new Profile({
                                                         UserID: targetMember.id,
-                                                        Username: targetMember.username,
+                                                        Username: message.mentions.user.first().username,
                                                         ServerID: message.guild.id,
                                                         ActiveColor: newRole.id
                                                     })
