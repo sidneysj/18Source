@@ -34,6 +34,9 @@ module.exports = {
                 case "fun":
                     helpEmbed.setTitle(`Fun`);
                     helpEmbed.addField(`- **setcolor**`, `Gives you a special role that would set their display color.`, true);
+                    if (message.channel.type !== "dm" && message.member.hasPermission("MANAGE_ROLES")) {
+                        helpEmbed.addField(`- **forcecolor**`, `Gives a user a special role that will set their display color.`, true);
+                    }
                     break;
                 default:
                     const { commands } = message.client;
