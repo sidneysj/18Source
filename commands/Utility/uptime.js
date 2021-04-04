@@ -1,6 +1,8 @@
 module.exports = {
     name: 'uptime',
     description: "Check how long the bot has been online!",
+    coolDown: 5,
+    guildOnly: true,
     execute(client, message) {
 
         let totalSeconds = (client.uptime / 1000);

@@ -5,6 +5,8 @@ module.exports = {
     name: 'bot',
     aliases: [`18`],
     description: `Information about 18.`,
+    coolDown: 5,
+    guildOnly: true,
     execute(client, message) {
 
         let embed = new Discord.MessageEmbed()

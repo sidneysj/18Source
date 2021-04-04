@@ -1,26 +1,22 @@
 const Discord = require("discord.js");
 const system = require('../../system.js');
 
-const Profile = require("../../models/profile.js");
+const Profile = require("../../models/guild.js");
 
 module.exports = {
-    name: 'forcecolor',
-    usage: `${system.config.Prefix}` + "forcecolor #HEXCODE",
-    description: `Gives a user a special role that will set their display color.`,
+    name: 'setcolor',
+    aliases: ['sc'],
+    usage: `${system.config.Prefix}` + "setcolor #HEXCODE",
+    description: `Gives you a special role that will set their display color.`,
+    coolDown: 10,
     execute(client, message, args) {
 
-        if (!message.member.hasPermission("MANAGE_ROLES")) return;
-
-        let targetMember = message.mentions.members.first();
-        if (!targetMember) return message.reply("Please mention a user!");
-        if (targetMember.bot) return;
-
         Profile.findOne({
-            UserID: targetMember.id,
+            UserID: message.author.id,
             ServerID: message.guild.id
         }, (err, profile) => {
 
-            let hexCode = args[1].toLowerCase();
+            let hexCode = args.join("").toLowerCase();
             let botRole = message.guild.roles.cache.find(r => r.id === "795101493509357570");
             let rp = botRole.position = botRole.position - 1;
             const filter = (reaction, user) => {
@@ -44,13 +40,13 @@ module.exports = {
                                     if (reaction.emoji.name === '👍') {
 
                                         await msg.delete();
-                                        let role = message.guild.roles.cache.find(r => r.id === profile.ActiveColor);
+                                        let role = message.guild.roles.cache.find(r => r.id === profile.ServerData.activeColor);
 
                                         if (role) {
                                             role.delete();
                                         }
 
-                                        profile.ActiveColor = "None"
+                                        profile.ServerData.activeColor = "None"
                                         profile.save().catch(err => console.error(err));
                                         message.channel.send(`Your color has been removed!`);
 
@@ -105,14 +101,16 @@ module.exports = {
 
                                         message.guild.roles.create({ data: { name: hexCode, color: hexCode, position: rp } }).then(() => {
                                             let newRole = message.guild.roles.cache.find(r => r.name === hexCode);
-                                            targetMember.roles.add(newRole).then(() => {
+                                            message.member.roles.add(newRole).then(() => {
                                                 message.channel.send("Your new color has been set!");
 
                                                 const newProfile = new Profile({
-                                                    UserID: targetMember.id,
+                                                    UserID: message.author.id,
                                                     Username: message.mentions.users.first().username,
                                                     ServerID: message.guild.id,
-                                                    ActiveColor: newRole.id
+                                                    ServerData: {
+                                                        activeColor: newRole.id
+                                                    }
                                                 })
 
                                                 newProfile.save().catch(err => console.error(err));
@@ -120,19 +118,21 @@ module.exports = {
                                         })
                                     } else {
 
-                                        let role = message.guild.roles.cache.find(r => r.id === profile.ActiveColor);
+                                        let role = message.guild.roles.cache.find(r => r.id === profile.ServerData.activeColor);
                                         if (!role && !profile) {
 
                                             message.guild.roles.create({ data: { name: hexCode, color: hexCode, position: rp } }).then(() => {
                                                 let newRole = message.guild.roles.cache.find(r => r.name === hexCode);
-                                                targetMember.roles.add(newRole).then(() => {
+                                                message.member.roles.add(newRole).then(() => {
                                                     message.channel.send("Your new color has been set!");
 
                                                     const newProfile = new Profile({
-                                                        UserID: targetMember.id,
-                                                        Username: message.mentions.user.first().username,
+                                                        UserID: message.author.id,
+                                                        Username: message.mentions.users.first().username,
                                                         ServerID: message.guild.id,
-                                                        ActiveColor: newRole.id
+                                                        ServerData: {
+                                                            activeColor: newRole.id
+                                                        }
                                                     })
 
                                                     newProfile.save().catch(err => console.error(err));
@@ -142,9 +142,9 @@ module.exports = {
 
                                             message.guild.roles.create({ data: { name: hexCode, color: hexCode, position: rp } }).then(() => {
                                                 let newRole = message.guild.roles.cache.find(r => r.name === hexCode);
-                                                targetMember.roles.add(newRole).then(() => {
+                                                message.member.roles.add(newRole).then(() => {
                                                     message.channel.send("Your new color has been set!");
-                                                    profile.ActiveColor = profile.ActiveColor = newRole.id;
+                                                    profile.ServerData.activeColor = profile.ServerData.activeColor = newRole.id;
                                                     profile.save().catch(err => console.error(err));
                                                 })
                                             })

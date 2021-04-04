@@ -1,57 +1,35 @@
+const mongoose = require("mongoose");
 const system = require('../system.js');
 
-const activities_list = [
-    {
-        "type": "WATCHING",
-        "message": "Sidney play video games!"
-    },
-    {
-        "type": "LISTENING",
-        "message": "One-Winged Angel on repeat!"
-    },
-    {
-        "type": "PLAYING",
-        "message": "One Step From Eden"
-    },
-    {
-        "type": "PLAYING",
-        "message": "Dragon Ball FigherZ"
-    },
-    {
-        "type": "PLAYING",
-        "message": "Portal 2"
-    },
-    {
-        "type": "PLAYING",
-        "message": "FINAL FANTASY VII"
-    },
-    {
-        "type": "PLAYING",
-        "message": "Outlast"
-    },
-    {
-        "type": "LISTENING",
-        "message": "Ashley's rant sessions!"
-    },
-    {
-        "type": "WATCHING",
-        "message": "Anime"
-    },
-    {
-        "type": "PLAYING",
-        "message": "Alien Isolation"
-    },
-    {
-        "type": "PLAYING",
-        "message": `${system.config.LatestVersion}`
-    },
-]
+const Main = require('../models/main.js');
 
 module.exports = (client) => {
 
-	console.log('\x1b[33m', `[18] Ready to serve in the Duct Tape Discord server on version: ${system.config.LatestVersion}!`, '\x1b[0m');
-	setInterval(() => {
-		let index = Math.floor(Math.random() * (activities_list.length));
-		client.user.setActivity(activities_list[index].message, {type: activities_list[index].type});
-	}, 30000);
+    mongoose.connect(client.config.Database, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+
+    console.log('\x1b[33m', `[18] Checking for updates on the Main model...`, '\x1b[0m');
+
+    Main.findOne({
+        CurrentBuild: system.config.LatestVersion
+    }, (err, main) => {
+
+        if (err) console.error(err);
+        if (!main) {
+
+            const newMain = new Main({
+                CurrentBuild: system.config.LatestVersion
+            })
+
+            newMain.save().catch(err => console.error(err));
+            console.log('\x1b[33m', `[18] Created a new Main model! Make sure to delete any previous models to save space.`, '\x1b[0m');
+        } else {
+            console.log('\x1b[33m', `[18] No updates were found.`, '\x1b[0m');
+        }
+    })
+
+    client.user.setActivity(`on v${system.config.LatestVersion}. Type ;help for assistants.`, { type: "PLAYING" });
+    console.log('\x1b[33m', `[18] Ready to serve in the Duct Tape Discord server on version: ${system.config.LatestVersion}!`, '\x1b[0m');
 }

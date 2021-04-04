@@ -5,6 +5,7 @@ module.exports = {
     name: 'avatar',
     aliases: ['icon', 'pfp'],
     usage: `${system.config.Prefix}`+"avatar [@User(s)]",
+    coolDown: 5,
     description: "Get an image link of your, a server member's, or multiple server member's profile picture.",
     execute(client, message) {
 
