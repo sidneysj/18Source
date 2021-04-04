@@ -31,19 +31,19 @@ fs.readdir("./commands/Core/", (err, files) => {
   });
 });
 
-fs.readdir("./commands/Dev/", (err, files) => {
-  if (err) console.error(err);
-  let jsFiles = files.filter(f => f.split(".").pop() === "js");
+// fs.readdir("./commands/Dev/", (err, files) => {
+//   if (err) console.error(err);
+//   let jsFiles = files.filter(f => f.split(".").pop() === "js");
 
-  if (jsFiles.length <= 0) return console.log('\x1b[31m', `[18] There are no commands to load from the Dev folder...`, '\x1b[0m');
+//   if (jsFiles.length <= 0) return console.log('\x1b[31m', `[18] There are no commands to load from the Dev folder...`, '\x1b[0m');
 
-  console.log('\x1b[33m', `[18] Loading ${jsFiles.length} command(s) from the Dev folder...`, '\x1b[0m');
-  jsFiles.forEach((f, i) => {
-    let props = require(`./commands/Dev/${f}`);
-    console.log('\x1b[32m', `[18] ${i + 1}: ${f} loaded!`, '\x1b[0m');
-    client.commands.set(props.name, props);
-  });
-});
+//   console.log('\x1b[33m', `[18] Loading ${jsFiles.length} command(s) from the Dev folder...`, '\x1b[0m');
+//   jsFiles.forEach((f, i) => {
+//     let props = require(`./commands/Dev/${f}`);
+//     console.log('\x1b[32m', `[18] ${i + 1}: ${f} loaded!`, '\x1b[0m');
+//     client.commands.set(props.name, props);
+//   });
+// });
 
 fs.readdir("./commands/Fun/", (err, files) => {
   if (err) console.error(err);
