@@ -17,7 +17,7 @@ module.exports = {
         }, (err, profile) => {
 
             let hexCode = args.join("").toLowerCase();
-            let botRole = message.guild.roles.cache.find(r => r.id === "795101493509357570");
+            let botRole = message.guild.roles.cache.find(r => r.id === "18");
             let rp = botRole.position = botRole.position - 1;
             const filter = (reaction, user) => {
                 return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;

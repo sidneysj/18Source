@@ -5,8 +5,8 @@ const guildSchema = mongoose.Schema({
     Username: String,
     ServerID: String,
     ServerData: {
-        messagesSent: {type: Number, default: 1},
         activeColor: String,
+        colorArray: []
     }
 
 });

@@ -1,8 +1,9 @@
 # Folders
 node_modules/
 models/old
-commands/Dev
 
 # Files
 package-lock.json
 config.json
+
+commands/Dev/dgtransfer.js

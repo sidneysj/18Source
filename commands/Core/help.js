@@ -31,17 +31,17 @@ module.exports = {
                 case "utility":
                     helpEmbed.setTitle(`Utility`);
                     helpEmbed.addField(`- **avatar**`, `Get an image link of your, a server member's, or multiple server member's profile picture.`, true);
-                    helpEmbed.addField(`- **setcolor**`, `Gives you a special role that would set their display color.`, true);
-                    if (message.channel.type !== "dm" && message.member.hasPermission("MANAGE_ROLES")) {
-                        helpEmbed.addField(`- **forcecolor**`, `Gives a user a special role that will set their display color.`, true);
-                    }
                     helpEmbed.addField(`- **server**`, `Check the server stats.`, true);
                     helpEmbed.addField(`- **uptime**`, `Check how long the bot has been online.`, true);
                     helpEmbed.addField(`- **user**`, `Check your or a server member's stats for Discord.`, true);
                     break;
-                // case "fun":
-                //     helpEmbed.setTitle(`Fun`);
-                //     break;
+                case "fun":
+                    helpEmbed.setTitle(`Fun`);
+                    helpEmbed.addField(`- **setcolor**`, `Gives you a special role that would set their display color.`, true);
+                    if (message.channel.type === "dm" || message.member.hasPermission("MANAGE_ROLES")) {
+                        helpEmbed.addField(`- **forcecolor**`, `Gives a user a special role that will set their display color.`, true);
+                    }
+                    break;
                 default:
                     const { commands } = message.client;
                     const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
@@ -59,7 +59,7 @@ module.exports = {
 
             if (message.channel.type !== "dm") {
                 let embed = new Discord.MessageEmbed()
-                    .setDescription(`${message.author.username} check your dms!`)
+                    .setDescription(`${message.author.username} check your dms!\nUse ${system.config.Prefix}**help [command]** for more information about specific commands!`)
                     .setColor(`${color}`)
 
                 message.channel.send(embed);
@@ -70,8 +70,8 @@ module.exports = {
                 .setColor(`#7075e4`)
                 .setDescription(`18's command types.\nType **${system.config.Prefix}help <Category>** to view those category's commands.`)
                 .setThumbnail(client.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
-                .addField(`**✨ Core**`, "The Basic such as help and support.")
-                // .addField(`**🎮 Fun**`, "Time to play!")
+                .addField(`**✨ Core**`, "The basic commands.")
+                .addField(`**🎲 Fun**`, "Time to play!")
                 .addField(`**:gear: Utility**`, "Commands that display information.")
                 .setFooter(`Running on v${system.config.LatestVersion}`, client.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
             message.author.send(SEmbed);

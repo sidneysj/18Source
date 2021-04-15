@@ -8,7 +8,6 @@ module.exports = {
     aliases: ['fc'],
     usage: `${system.config.Prefix}` + "forcecolor #HEXCODE [@User]",
     description: `Gives a user a special role that will set their display color.`,
-    coolDown: 10,
     permissions: "MANAGE_ROLES",
     execute(client, message, args) {
 
@@ -21,8 +20,8 @@ module.exports = {
             ServerID: message.guild.id
         }, (err, profile) => {
 
-            let hexCode = args[1].toLowerCase();
-            let botRole = message.guild.roles.cache.find(r => r.id === "795101493509357570");
+            let hexCode = args[0].toLowerCase();
+            let botRole = message.guild.roles.cache.find(r => r.name === "18");
             let rp = botRole.position = botRole.position - 1;
             const filter = (reaction, user) => {
                 return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -79,9 +78,8 @@ module.exports = {
 
 
                 if (err) system.imperfectRun(client, message, err, `setcolor.js`);
-
-
                 let copyHex = hexCode.substr(1);
+
                 let embed = new Discord.MessageEmbed()
                     .setColor(hexCode)
                     .setAuthor(`${hexCode}`, `https://dummyimage.com/500%20x%20500/${copyHex}/${copyHex}.png`)
@@ -111,7 +109,7 @@ module.exports = {
 
                                                 const newProfile = new Profile({
                                                     UserID: targetMember.id,
-                                                    Username: message.mentions.users.first().username,
+                                                    Username: targetMember.username,
                                                     ServerID: message.guild.id,
                                                     ServerData: {
                                                         activeColor: newRole.id
@@ -133,7 +131,7 @@ module.exports = {
 
                                                     const newProfile = new Profile({
                                                         UserID: targetMember.id,
-                                                        Username: message.mentions.user.first().username,
+                                                        Username: targetMember.username,
                                                         ServerID: message.guild.id,
                                                         ServerData: {
                                                             activeColor: newRole.id

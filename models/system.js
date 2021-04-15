@@ -9,13 +9,14 @@ const systemSchema = mongoose.Schema({
         allowStackRole: {type: String, default: false},
         allowJoinMessage: {type: String, default: false},
         allowLeaveMessage: {type: String, default: false},
+        allowMessagePoints: {type: String, default: false},
         customJoinMessage: {type: String, default: ""},
         customLeaveMessage: {type: String, default: ""},
         levelRoles: [],
     },
     ServerChannels: {
-        modChannel: String,
-        userChannel: String,
+        modLogChannel: String,
+        userLogChannel: String,
     },
     ModerationLogs: {
         logBans: {type: String, default: false},
