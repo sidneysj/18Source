@@ -77,5 +77,5 @@ module.exports = (client) => {
         })
 
         console.log('\x1b[34m', `[${client.user.username}] Successfully edited ${colorChangeArray.length} color roles.`, '\x1b[0m');
-    }, 4.32e+7)
+    }, 3.6e+6)
 }

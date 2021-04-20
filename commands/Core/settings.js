@@ -27,7 +27,7 @@ module.exports = {
             .setColor(message.guild.member(message.author).displayHexColor)
             .setThumbnail(message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
             .setTimestamp(new Date)
-            .addField(`Rainbow - ${setRain} (Premium Servers Only)`, `Change this setting to enable or disable the bot from randomly changing the colors of your color role every 2 minuets. (**${system.config.Prefix}setrainbow**)`, true)
+            .addField(`Rainbow - ${setRain} (Premium Servers Only)`, `Change this setting to enable or disable the bot from randomly changing the colors of your color role every 6 hours. (**${system.config.Prefix}setrainbow**)`, true)
             .addField(`AutoSave HexCode - ${setAuto} (Premium Servers Only)`, `Change this setting to enable or disable the bot from saving new colors you've set in your color role. All colors saved in this list will be a part of the rainbow. (**${system.config.Prefix}sethex** | **${system.config.Prefix}hexlist**)`,);
 
             message.channel.send(embed);

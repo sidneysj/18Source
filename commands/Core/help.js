@@ -36,7 +36,7 @@ module.exports = {
                 case "utility":
                     helpEmbed.setTitle(`Utility`);
                     helpEmbed.addField(`- **avatar**`, `Get an image link of your, a server member's, or multiple server member's profile picture.`, true);
-                    helpEmbed.addField(`- **hexlist**`, `View hexcodes you have inputted in the past. Input ${system.config.Prefix}hexlist delete <Placement> to delete a specific hexcode on the list or input ${system.config.Prefix}hexlist clear to delete all hexcodes on the list.`, true);
+                    helpEmbed.addField(`- **hexlist**`, `View hexcodes you have inputted in the past. Input ${system.config.Prefix}hexlist delete <Placement> to delete a specific hex code on the list or input ${system.config.Prefix}hexlist clear to delete all hex codes on the list.`, true);
                     helpEmbed.addField(`- **server**`, `Check the server stats.`, true);
                     helpEmbed.addField(`- **uptime**`, `Check how long the bot has been online.`, true);
                     helpEmbed.addField(`- **user**`, `Check your or a server member's stats for Discord.`, true);
@@ -50,7 +50,7 @@ module.exports = {
                 case "options":
                     helpEmbed.setTitle(`Options`);
                     helpEmbed.addField(`- **sethex**`, `Change the setting of enabling or disenabling the bot from saving new colors you've set in your color role. All colors saved in this list will be a part of the rainbow. Input ${system.config.Prefix}hexlist to view colors that have been saved.`, true);
-                    helpEmbed.addField(`- **setrainbow**`, `Change the setting of enabling or disenabling your color role from randomly changing colors every 12 hours.`, true);
+                    helpEmbed.addField(`- **setrainbow**`, `Change the setting of enabling or disenabling your color role from randomly changing colors every 6 hours.`, true);
                     break;
                 default:
                     const { commands } = message.client;
@@ -59,7 +59,7 @@ module.exports = {
 
                     helpEmbed.setTitle(`${command.name[0].toUpperCase() + command.name.substr(1)}`);
                     helpEmbed.setThumbnail(client.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
-                    helpEmbed.setDescription(`**Aliases:** ${command.aliases || "None"}\n**Usage:** ${command.usage || `${system.config.Prefix}${command.name}`}\n**Description:** ${command.description || "No Description"}\n**CoolDown:** ${command.coolDown} Seconds` || "No CoolDown");
+                    helpEmbed.setDescription(`**Aliases:** ${command.aliases || "None"}\n**Usage:** ${command.usage || `${system.config.Prefix}${command.name}`}\n**Description:** ${command.description || "No Description"}\n**Cool Down:** ${command.coolDown || 0 } Seconds`);
             }
 
             message.channel.send(helpEmbed);

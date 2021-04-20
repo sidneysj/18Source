@@ -5,7 +5,7 @@ const Profile = require("../../models/guild.js");
 
 module.exports = {
     name: 'hexlist',
-    description: `View hexcodes you have inputted in the past. Input ${system.config.Prefix}hexlist delete <Placement> to delete a specific hexcode on the list or input ${system.config.Prefix}hexlist clear to delete all hexcodes on the list.`,
+    description: `View hexcodes you have inputted in the past. Input ${system.config.Prefix}hexlist delete <Placement> to delete a specific hex code on the list or input ${system.config.Prefix}hexlist clear to delete all hex codes on the list.`,
     execute(client, message, args) {
 
         Profile.findOne({
@@ -44,8 +44,8 @@ module.exports = {
                 }
 
                 profile.save().catch(err => console.error(err));
-                message.channel.send(`Successfully removed all previous hexcodes from the list.`);
-                console.log('\x1b[34m', `[${client.user.username}] Removed ${amount} hexcode(s) from ${message.author.username}'s database.`, '\x1b[0m');
+                message.channel.send(`Successfully removed all previous hex codes from the list.`);
+                console.log('\x1b[34m', `[${client.user.username}] Removed ${amount} hex code(s) from ${message.author.username}'s database.`, '\x1b[0m');
             }
 
             if (!tag) {
@@ -55,7 +55,7 @@ module.exports = {
 
                 if (items.length === 0) {
 
-                    embeds.push(new Object({ words: "You have no saved hexcodes!" }));
+                    embeds.push(new Object({ words: "You have no saved hex codes!" }));
 
                 } else {
 
@@ -77,7 +77,7 @@ module.exports = {
                 FieldsEmbed.embed
                     .setAuthor(message.author.username, message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
                     .setColor(message.guild.member(message.author).displayHexColor)
-                    .setDescription(`A total of **${items.length}** different color(s)!\nInput ${system.config.Prefix}**hexlist delete <Placecment>** to remove a hexcode from the list.\nInput **${system.config.Prefix}hexlist clear** to delete all hexcodes from the list.`)
+                    .setDescription(`A total of **${items.length}** different color(s)!\nInput ${system.config.Prefix}**hexlist delete <Placecment>** to remove a hex code from the list.\nInput **${system.config.Prefix}hexlist clear** to delete all hex codes from the list.`)
                     .setThumbnail(message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
 
                 FieldsEmbed.build();
