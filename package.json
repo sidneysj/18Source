@@ -23,8 +23,8 @@
     "enmap": "^5.8.4",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
-    "mongoose": "^5.12.3",
-    "node": "^15.12.0",
+    "mongoose": "^5.12.4",
+    "node": "^15.14.0",
     "nodemon": "^2.0.7",
     "parse-ms": "^2.1.0"
   }

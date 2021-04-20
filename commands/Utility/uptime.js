@@ -1,7 +1,7 @@
 module.exports = {
     name: 'uptime',
     description: "Check how long the bot has been online!",
-    coolDown: 5,
+    coolDown: 60,
     guildOnly: true,
     execute(client, message) {
 

@@ -1,7 +1,4 @@
 const Discord = require("discord.js");
-const mongoose = require("mongoose");
-
-const Main = require('./models/main.js');
 
 function imperfectRun(client, message, e, scriptName, commandName) {
 
@@ -13,4 +10,7 @@ function imperfectRun(client, message, e, scriptName, commandName) {
 
 const config = require('./config.json'); 
 
-module.exports = { imperfectRun, config}
+const LatestVersion = "0.3.0";
+const LatestUpdate = "**April 19, 2021** @ 08:47pm EST";
+
+module.exports = { imperfectRun, config, LatestUpdate, LatestVersion}

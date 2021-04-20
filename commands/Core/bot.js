@@ -16,10 +16,10 @@ module.exports = {
             .setDescription(`If you need my assistance type **${system.config.Prefix}help**!`)
             .setTitle(`Android 18`)
             .setThumbnail(client.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
-            .setFooter(`Running on v${system.config.LatestVersion}`, client.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
-            .addField("Current Version", `v${system.config.LatestVersion}`)
-            .addField("Last Updated", system.config.LatestUpdate, true)
-            .addField("Current Changelog", `${system.config.ChangelogLink}${system.config.LatestVersion}`, true)
+            .setFooter(`Running on v${system.LatestVersion}`, client.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
+            .addField("Current Version", `v${system.LatestVersion}`)
+            .addField("Last Updated", system.LatestUpdate, true)
+            .addField("Changelog", `https://github.com/MrTape/Android18/releases/tag/${system.LatestVersion}`, true)
         
             message.channel.send(embed);
     }

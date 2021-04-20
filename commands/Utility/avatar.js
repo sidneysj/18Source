@@ -4,8 +4,7 @@ const system = require('../../system.js');
 module.exports = {
     name: 'avatar',
     aliases: ['icon', 'pfp'],
-    usage: `${system.config.Prefix}`+"avatar [@User(s)]",
-    coolDown: 5,
+    usage: `${system.config.Prefix}`+"avatar [User(s)]",
     description: "Get an image link of your, a server member's, or multiple server member's profile picture.",
     execute(client, message) {
 
@@ -19,9 +18,11 @@ module.exports = {
         if (!message.mentions.users.size) {
 
             message.channel.send(avatarEmbed);
+
         } else if (message.mentions.users.size === 1) {
 
             message.channel.send(avatarEmbed);
+
         } else {
 
             const avatarList = message.mentions.users.map(user => {

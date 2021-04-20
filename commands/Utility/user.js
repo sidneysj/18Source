@@ -4,9 +4,8 @@ const system = require('../../system.js');
 
 module.exports = {
     name: 'user',
-    usage: `${system.config.Prefix}`+"userinfo [@User]",
+    usage: `${system.config.Prefix}`+"userinfo [User]",
     description: "Check your or a server member's stats for Discord.",
-    coolDown: 5,
     execute(client, message) {
 
         let member = message.mentions.users.first() || message.author;
@@ -14,16 +13,17 @@ module.exports = {
         const roleMember = message.guild.member(member);
 
         let embed = new Discord.MessageEmbed()
-            .setAuthor(member.username, member.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
+            .setAuthor(member.tag, member.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
             .setColor(message.guild.member(member).displayHexColor)
             .setThumbnail(member.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
             .setTimestamp(new Date)
             .addField("Name", member.username, true)
             .addField("Nickname", message.guild.member(member).nickname ? message.guild.member(member).nickname : "None", true)
             .addField("ID", member.id)
-            .addField(`Roles [${roleMember.roles.cache.size}]:`, roleMember.roles.cache.map(s => s).join(" | "))
-            .addField(`Account Created:`, `${moment.utc(member.createdAt).format('h:mm:ssa, (dddd) MMMM Do, YYYY')}`)
-            .addField(`Joined Server:`, `${moment.utc(rMember.joinedAt).format('h:mm:ssa, (dddd) MMMM Do, YYYY')}`);
+            .addField("Color Hex", message.guild.member(member).displayHexColor)
+            .addField(`Roles [${roleMember.roles.cache.size}]:`, roleMember.roles.cache.sort((a, b) => b.position - a.position).map(r => r).join(" | "))
+            .addField(`Account Created:`, `${moment.utc(member.createdAt).format('dddd | MMMM Do, YYYY @ hh:mm:ssa')}`)
+            .addField(`Joined Server:`, `${moment.utc(rMember.joinedAt).format('dddd | MMMM Do, YYYY @ hh:mm:ssa')}`);
 
         message.channel.send(embed);
     }
