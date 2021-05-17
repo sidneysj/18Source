@@ -10,7 +10,7 @@ function imperfectRun(client, message, e, scriptName, commandName) {
 
 const config = require('./config.json'); 
 
-const LatestVersion = "0.3.1";
-const LatestUpdate = "**April 19, 2021** @ 10:10pm EST";
+const LatestVersion = "0.4.0";
+const LatestUpdate = "**May 17, 2021** @ 4:09pm EST";
 
 module.exports = { imperfectRun, config, LatestUpdate, LatestVersion}

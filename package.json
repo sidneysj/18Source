@@ -1,6 +1,6 @@
 {
   "name": "android-18",
-  "version": "0.2.1",
+  "version": "0.4.0",
   "description": "Friendly personal Discord bot for the Duct Tape server!",
   "main": "index.js",
   "scripts": {
@@ -9,23 +9,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MrTape/ProjectDuctTape.git"
+    "url": "git+https://github.com/MrTape/18Source.git"
   },
-  "author": "MrTape",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MrTape/ProjectDuctTape/issues"
+    "url": "https://github.com/MrTape/18Source/issues"
   },
-  "homepage": "https://github.com/MrTape/ProjectDuctTape#readme",
+  "homepage": "https://github.com/MrTape/18Source#readme",
   "dependencies": {
+    "@discordjs/opus": "^0.5.0",
     "discord-paginationembed": "^2.1.0",
     "discord.js": "^12.5.3",
-    "enmap": "^5.8.4",
+    "ffmpeg-static": "^4.3.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
-    "mongoose": "^5.12.4",
-    "node": "^15.14.0",
+    "mongoose": "^5.12.9",
+    "node": "^16.1.0",
     "nodemon": "^2.0.7",
-    "parse-ms": "^2.1.0"
+    "parse-ms": "^3.0.0"
   }
 }

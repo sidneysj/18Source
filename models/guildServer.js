@@ -1,23 +1,16 @@
 const mongoose = require("mongoose");
 
-const systemSchema = mongoose.Schema({
-    Servername: String,
+const guildServerSchema = mongoose.Schema({
+    ServerName: String,
     ServerID: String,
-    BotRoleID: String,
     ServerFeatures: {
         allowColorRoles: {type: String, default: "false"},
-        allowModeration: {type: String, default: "false"},
-        allowStackRole: {type: String, default: "false"},
-        allowJoinMessage: {type: String, default: "false"},
-        allowLeaveMessage: {type: String, default: "false"},
-        allowMessagePoints: {type: String, default: "false"},
-        customJoinMessage: [],
-        customLeaveMessage: [],
-        levelRoles: [],
     },
     ServerChannels: {
         modLogChannel: String,
-        userLogChannel: String,
+        vcChatPublicChannel: String,
+        vcChatPrivateChannel: String,
+        saveImageChannels: [],
     },
     ModerationLogs: {
         logBans: {type: String, default: "false"},
@@ -35,4 +28,4 @@ const systemSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("System", systemSchema);
+module.exports = mongoose.model("GuildServer", guildServerSchema);

@@ -31,12 +31,13 @@ module.exports = {
                     helpEmbed.setTitle(`Core`);
                     helpEmbed.addField(`- **bot**`, `Information about 18.`, true);
                     helpEmbed.addField(`- **help**`, `Shows a list of commands you can use! To go into detail, use ${system.config.Prefix}help [command].`, true);
-                    helpEmbed.addField(`- **settings**`, `View options you can change.`, true);
+                    if (message.channel.type === "dm" || message.member.hasPermission('ADMINISTRATOR')) {
+                        helpEmbed.addField(`- **guildsettings**`, `View options you can change.`, true);
+                    }                   
                     break;
                 case "utility":
                     helpEmbed.setTitle(`Utility`);
                     helpEmbed.addField(`- **avatar**`, `Get an image link of your, a server member's, or multiple server member's profile picture.`, true);
-                    helpEmbed.addField(`- **hexlist**`, `View hexcodes you have inputted in the past. Input ${system.config.Prefix}hexlist delete <Placement> to delete a specific hex code on the list or input ${system.config.Prefix}hexlist clear to delete all hex codes on the list.`, true);
                     helpEmbed.addField(`- **server**`, `Check the server stats.`, true);
                     helpEmbed.addField(`- **uptime**`, `Check how long the bot has been online.`, true);
                     helpEmbed.addField(`- **user**`, `Check your or a server member's stats for Discord.`, true);
@@ -47,10 +48,13 @@ module.exports = {
                     helpEmbed.addField(`- **haha**`, `The bot will send a message saying that a user's joke was funny.`, true);
                     helpEmbed.addField(`- **setcolor**`, `Gives you a special role that would set their display color.`, true);
                     break;
-                case "options":
-                    helpEmbed.setTitle(`Options`);
-                    helpEmbed.addField(`- **sethex**`, `Change the setting of enabling or disenabling the bot from saving new colors you've set in your color role. All colors saved in this list will be a part of the rainbow. Input ${system.config.Prefix}hexlist to view colors that have been saved.`, true);
-                    helpEmbed.addField(`- **setrainbow**`, `Change the setting of enabling or disenabling your color role from randomly changing colors every 6 hours.`, true);
+                case "features":
+                    helpEmbed.setTitle(`Features`);
+                    if (message.channel.type === "dm" || message.member.hasPermission('ADMINISTRATOR')) {
+                        helpEmbed.addField(`- **setcolorrole**`, `Change the options to allow or not allow server members setting a color role.`, true);
+                        helpEmbed.addField(`- **setvcchat**`, `Set a VC Chat for the bot..`, true);
+
+                    }  
                     break;
                 default:
                     const { commands } = message.client;
@@ -83,9 +87,9 @@ module.exports = {
                 .setThumbnail(client.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
                 .addField(`**✨ Core**`, "The basic and fundamental commands.")
                 .addField(`**🎲 Fun**`, "Commands to play around with.", true)
-                .addField(`**:gear: Options**`, "Commands that can change how you want the bot to function for yourself.", true)
+                .addField(`**🌟 Features**`, "Commands that can change how you want the bot to function for yourself.", true)
                 .addField(`**📃 Utility**`, "Information base commands.", true)
-                .setFooter(`Running on v${system.config.LatestVersion}`, client.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
+                .setFooter(`Running on v${system.LatestVersion}`, client.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
             message.author.send(SEmbed);
         }
     }

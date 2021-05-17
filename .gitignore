@@ -6,5 +6,4 @@ models/old
 package-lock.json
 config.json
 
-commands/Dev/dgtransfer.js
-commands/Fun/forcecolor.js
+commands/Dev/guildUserTransfer.js
