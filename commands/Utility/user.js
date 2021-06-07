@@ -14,18 +14,12 @@ module.exports = {
             let member;
             let embed = new Discord.MessageEmbed()
 
-            if (item && !message.mentions.users.size) {
+            if (item && !message.mentions.users.first()) {
 
-                let searchGuild = await client.guilds.cache.get(item);
-                if (searchGuild) return;
-
-                let user = await message.guild.members.cache.find(member => member.id === item);
-                if (!user) return;
-
-                member = await message.guild.members.fetch(item);
-
-                let rMember = message.guild.member(member)
+                member = await message.guild.members.fetch(item).catch(err => { return})
                 const roleMember = message.guild.member(member);
+
+                if (!member) return;
 
                 embed.setAuthor(member.user.tag, member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
                 embed.setColor(member.displayHexColor)
@@ -38,6 +32,7 @@ module.exports = {
                 embed.addField(`Roles [${roleMember.roles.cache.size}]:`, roleMember.roles.cache.sort((a, b) => b.position - a.position).map(r => r).join(" | "))
                 embed.addField(`Account Created:`, `${moment.utc(member.user.createdAt).format('dddd | MMMM Do, YYYY @ hh:mm:ssa')}`)
                 embed.addField(`Joined Server:`, `${moment.utc(member.joinedAt).format('dddd | MMMM Do, YYYY @ hh:mm:ssa')}`);
+
 
             } else {
 

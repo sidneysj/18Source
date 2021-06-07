@@ -30,7 +30,7 @@ module.exports = {
             let response = args.join("");
             let channel = message.mentions.channels.first();
 
-            if (!response && !channel) return message.reply(`Be sure to mention the role you want. **${system.config.Prefix}setvcchat <Role.name>**. To remove the current set vc chat, type **${system.config.Prefix}setvcchat remove**.`);
+            if (!response && !channel) return message.reply(`Be sure to mention the role you want. **${system.config.Prefix}setvcchat <#channel>**. To remove the current set vc chat, type **${system.config.Prefix}setvcchat remove**.`);
             if (response === "Remove" || response === "remove") {
 
                 sys.ServerChannels.vcChatPublicChannel = "";
@@ -49,9 +49,6 @@ module.exports = {
 
                 message.channel.send(`Successfully set ${channel} as the VC Chat!`);
 
-            } else {
-
-                return message.reply(`Be sure to mention the role you want. **${system.config.Prefix}setvcchat <Role.name>**. To remove the current set vc chat, type **${system.config.Prefix}setvcchat remove**.`);
             }
         })
     }

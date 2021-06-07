@@ -6,7 +6,7 @@ module.exports = {
     aliases: ['icon', 'pfp'],
     usage: `${system.config.Prefix}`+"avatar [User(s)]",
     description: "Get an image link of your, a server member's, or multiple server member's profile picture.",
-    execute(client, message) {
+    execute(client, message, args) {
 
         let member = message.mentions.users.first() || message.author;
         let avatarEmbed = new Discord.MessageEmbed()

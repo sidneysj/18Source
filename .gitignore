@@ -1,6 +1,7 @@
 # Folders
 node_modules/
 models/old
+discontinued/
 
 # Files
 package-lock.json

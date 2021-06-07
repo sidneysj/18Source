@@ -12,7 +12,7 @@ module.exports = (oldState, newState) => {
         if (!sys) return;
 
         if (newState.member.bot) return;
-        if (sys.ServerChannels.vcChatPublicChannel !== "") {
+        if (sys.ServerChannels.vcChatPublicChannel !== undefined) {
 
             if (newState.member.voice.channelID !== null) {
 

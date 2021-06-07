@@ -100,7 +100,7 @@ module.exports = {
                     }
                 } else {
 
-                    if (!hexCode || hexCode.length === 6) return message.reply(`there was no color provided!\nYou can choose a color here: https://htmlcolorcodes.com/color-picker/\nPlease make sure to formate it as **setcolor #RRGGBB**\nIf you no longer wish to have your own color role type **setcolor none** or **setcolor remove**.`);
+                    if (!hexCode || hexCode.length !== 7) return message.reply(`there was no color provided!\nYou can choose a color here: https://htmlcolorcodes.com/color-picker/\nPlease make sure to formate it as **setcolor #RRGGBB**\nIf you no longer wish to have your own color role type **setcolor none** or **setcolor remove**.`);
                     if (!message.content.includes('#')) return message.reply(`Don't forget to add the **#** at the beginning!`);
                     if (err) system.imperfectRun(client, message, err, `setcolor.js`);
 

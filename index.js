@@ -31,6 +31,7 @@ fs.readdir("./commands/Core/", (err, files) => {
   });
 });
 
+
 // fs.readdir("./commands/Dev/", (err, files) => {
 //   if (err) console.error(err);
 //   let jsFiles = files.filter(f => f.split(".").pop() === "js");
